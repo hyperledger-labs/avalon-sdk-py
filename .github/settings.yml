@@ -1,0 +1,22 @@
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+repository:
+  name: avalon-sdk-py
+  description: The scope of the lab is to develop the SDK separately from the main
+    repository so as to ease the development and package release process. The package
+    will be in accordance with the Enterprise Ethereum Alliance Off-Chain Trusted
+    Compute Specification and could be installed by users for developing
+    applications based on Avalon.
+  homepage: https://wiki.hyperledger.org/display/avalon/
+  default_branch: master
+  has_downloads: false
+  has_issues: true
+  has_projects: true
+  has_wiki: false
+  archived: false
+  private: false
+  allow_squash_merge: true
+  allow_merge_commit: false
+  allow_rebase_merge: true
