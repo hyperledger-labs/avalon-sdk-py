@@ -10,7 +10,7 @@ repository:
     Compute Specification and could be installed by users for developing
     applications based on Avalon.
   homepage: https://wiki.hyperledger.org/display/avalon/
-  default_branch: master
+  default_branch: main
   has_downloads: false
   has_issues: true
   has_projects: true
