@@ -125,12 +125,14 @@ class WorkerSign():
                                       wo_res_verification_key):
         """
         Function to verify the work order response signature
+
         Parameters:
-            @param wo_response - dictionary contains work order response
-            as per Trusted Compute EEA API 6.1.2 Work Order Result Payload
-            @param wo_res_verification_key - ECDSA/SECP256K1 public key
-            used to verify work order response signature.
-        Returns enum type SignatureStatus
+            wo_response : Dictionary which contains work order response
+                as per Trusted Compute EEA API 6.1.2 Work Order Result Payload
+            wo_res_verification_key : ECDSA/SECP256K1 public key
+                used to verify work order response signature.
+        Returns:
+            enum type SignatureStatus
         """
         if "workerSignature" not in wo_response:
             logger.error("workerSignature not present in reponse json")
@@ -152,14 +154,16 @@ class WorkerSign():
                                               requester_nonce):
         """
         Function to verify the work order response signature
+
         Parameters:
-            @param wo_response - dictionary contains work order response
-            as per Trusted Compute EEA API 6.1.2 Work Order Result Payload
-            @param wo_verification_key - ECDSA/SECP256K1 public key used
-            to verify work order verification key signature.
-            @param requester_nonce - requester generated nonce passed in work
-            order request. Required in 2 step verification.
-        Returns enum type SignatureStatus
+            wo_response : Dictionary which contains work order response
+                as per Trusted Compute EEA API 6.1.2 Work Order Result Payload
+            wo_verification_key : ECDSA/SECP256K1 public key used
+                to verify work order verification key signature.
+            requester_nonce : requester generated nonce passed in work
+                order request. Required in 2 step verification.
+        Returns:
+            enum type SignatureStatus
         """
         if requester_nonce is None:
             logger.error("Missing requester_nonce argument")
@@ -180,13 +184,14 @@ class WorkerSign():
         """
         Function to verify the signature received from the enclave
         Parameters:
-            @param wo_response - dictionary contains work order response
-            as per Trusted Compute EEA API 6.1.2 Work Order Result Payload
-            @param wo_res_verification_key - worker ECDSA/SECP256K1
-            public key used to verify work order response signature.
-            @param requester_nonce - requester generated nonce passed in work
-            order request. Required in 2 step verification.
-        Returns enum type SignatureStatus
+            wo_response : Dictionary which contains work order response
+                as per Trusted Compute EEA API 6.1.2 Work Order Result Payload
+            wo_res_verification_key : worker ECDSA/SECP256K1
+                public key used to verify work order response signature.
+            requester_nonce : requester generated nonce passed in work
+                order request. Required in 2 step verification.
+        Returns:
+            enum type SignatureStatus
         """
         # if verification_key present in work order response
         # then do 2 step verification
@@ -219,9 +224,10 @@ class WorkerSign():
         """
         Function to verify the signature of work order receipt update
         Parameters:
-            - input_json is dictionary contains payload returned by the
+            input_json: Dictionary which contains payload returned by the
               WorkOrderReceiptUpdateRetrieve API as define EEA spec 7.2.7
-        Returns enum type SignatureStatus
+        Returns:
+            enum type SignatureStatus
         """
         input_json_params = input_json
 
@@ -245,9 +251,10 @@ class WorkerSign():
         """
         Function to verify the signature of work order receipt create
         Parameters:
-            - input_json is dictionary contains request payload of
+            input_json: Dictionary which contains request payload of
               WorkOrderReceiptRetrieve API as define EEA spec 7.2.2
-        Returns enum type SignatureStatus
+        Returns:
+            enum type SignatureStatus
         """
         input_json_params = input_json['params']
 
@@ -275,13 +282,15 @@ class WorkerSign():
         """
         Utils function to verify integrity of worker encryption key using
         worker verification key
-        @params encryption_key_signature - Signature computed on hash
-                                           of encryption key
-        @params encryption_key - Public encryption key of the worker
-        @params verifying_key - Public signing key or verification key
+        Parameters:
+            encryption_key_signature : Signature computed on hash
+                                        of encryption key
+            encryption_key : Public encryption key of the worker
+            verifying_key : Public signing key or verification key
                                 of the worker
-        returns SignatureStatus.PASSED in case of successful verification
-                SignatureStatus.FAILED in case of verification failure
+        Returns:
+            SignatureStatus.PASSED in case of successful verification
+            SignatureStatus.FAILED in case of verification failure
         """
 
         encrypt_key_sig_bytes = hex_to_byte_array(encryption_key_signature)
