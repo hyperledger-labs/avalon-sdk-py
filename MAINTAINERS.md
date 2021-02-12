@@ -8,6 +8,7 @@ https://creativecommons.org/licenses/by/4.0/
 | ---- | ------ | --------------------------------------------------------- |
 | Karthika Murthy | [Karthikamurthy](https://github.com/karthikamurthy) | @karthikamurthy |
 | Divya Taori | [divyataori](https://github.com/divyataori) | @divyataori |
+| Swati Kasera | [swatikasera](https://github.com/swatikasera) | @swatikasera |
 
 
 See also Hyperledger [Avalon Maintainers](https://github.com/orgs/hyperledger/teams/avalon-maintainers/members).
