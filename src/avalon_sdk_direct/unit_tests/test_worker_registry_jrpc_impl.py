@@ -34,14 +34,13 @@ class TestWorkerRegistryJRPCImpl(unittest.TestCase):
         self.__config = config
         self.__worker_registry_wrapper = WorkerRegistryJRPCClient(
             self.__config)
-        self.__worker_id = secrets.token_hex(32)
         self.__worker_type = WorkerType.TEE_SGX
-        self.__org_id = secrets.token_hex(32)
         self.__lookup_tag=None
+        self.__org_id = None
+        self.__app_ids =  None
         self.__details = json.dumps(
             {"workOrderSyncUri":
              "http://worker-order:8008".encode("utf-8").hex()})
-        self.__app_ids = secrets.token_hex(32)
 
     def test_worker_register(self):
         req_id = 12
@@ -74,7 +73,7 @@ class TestWorkerRegistryJRPCImpl(unittest.TestCase):
 
     def test_worker_set_status(self):
         req_id = 14
-        self.__status = WorkerStatus.OFF_LINE
+        self.__status = WorkerStatus.ACTIVE
         logging.info(
             'Calling test_worker_set_status with\n worker_id %s\n status %d\n',
             self.__worker_id, self.__status.value)
@@ -105,7 +104,7 @@ class TestWorkerRegistryJRPCImpl(unittest.TestCase):
         res = self.__worker_registry_wrapper.worker_lookup(
             worker_type=self.__worker_type, id=req_id)
         logging.info('Result: %s\n ', res)
-        if res['error']['code'] == JRPCErrorCodes.UNKNOWN_ERROR:
+        if "error" in res and res['error']['code'] == JRPCErrorCodes.UNKNOWN_ERROR:
             logging.error("Caught an exception before sending the request")
             return
         self.assertEqual(
@@ -133,9 +132,10 @@ def main():
               "json_rpc_uri" : "http://localhost:1947",
     }
     test = TestWorkerRegistryJRPCImpl(worker)
-    test.test_worker_register()
     logging.info("********************************************************************************")
     test.test_worker_lookup()
+    logging.info("********************************************************************************")
+    test.test_worker_lookup_next()
     logging.info("********************************************************************************")
     test.test_worker_retrieve()
     logging.info("********************************************************************************")
@@ -143,9 +143,7 @@ def main():
     logging.info("********************************************************************************")
     test.test_worker_set_status()
     logging.info("********************************************************************************")
-    test.test_worker_retrieve()
-    logging.info("********************************************************************************")
-    test.test_worker_lookup_next()
+    test.test_worker_register()
     logging.info("********************************************************************************")
 
 
