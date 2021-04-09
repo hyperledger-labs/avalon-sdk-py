@@ -189,6 +189,9 @@ class JRPCWorkerRegistryImpl(WorkerRegistry):
         Returns:
         JRPC response with worker registry status.
         """
+        
+        self.validation.not_null(id, worker_id)
+
         json_rpc_request = {
             "jsonrpc": "2.0",
             "method": "WorkerRegister",
@@ -221,6 +224,9 @@ class JRPCWorkerRegistryImpl(WorkerRegistry):
         Returns:
         JRPC response with update status.
         """
+
+        self.validation.not_null(id, worker_id)
+
         json_rpc_request = {
             "jsonrpc": "2.0",
             "method": "WorkerUpdate",
