@@ -12,4 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-__all__ = []
+
+all :
+	python3 setup.py sdist bdist_wheel ;
+
+clean:
+	rm -rf build deps dist *.egg-info
+	find . -iname '*.pyc' -delete
+	find . -iname '__pycache__' -delete
+
+.PHONY : all
+.PHONY : clean
+.PHONY : install
+
