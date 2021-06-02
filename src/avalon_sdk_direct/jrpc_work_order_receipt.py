@@ -35,6 +35,7 @@ class JRPCWorkOrderReceiptImpl(WorkOrderReceipt):
         self.__uri_client = HttpJrpcClient(config["json_rpc_uri"])
         self.validation = ArgumentValidator()
 
+    @error_handler
     def work_order_receipt_create(
             self, work_order_id,
             worker_service_id,
@@ -90,6 +91,7 @@ class JRPCWorkOrderReceiptImpl(WorkOrderReceipt):
         response = self.__uri_client._postmsg(json.dumps(json_rpc_request))
         return response
 
+    @error_handler
     def work_order_receipt_update(
             self, work_order_id,
             updater_id,
@@ -132,6 +134,7 @@ class JRPCWorkOrderReceiptImpl(WorkOrderReceipt):
         response = self.__uri_client._postmsg(json.dumps(json_rpc_request))
         return response
 
+    @error_handler
     def work_order_receipt_retrieve(self, work_order_id, id=None):
         """
         Retrieve a work order receipt JSON RPC request and submit to an
@@ -156,6 +159,7 @@ class JRPCWorkOrderReceiptImpl(WorkOrderReceipt):
         response = self.__uri_client._postmsg(json.dumps(json_rpc_request))
         return response
 
+    @error_handler
     def work_order_receipt_update_retrieve(
             self, work_order_id,
             updater_id,
@@ -185,6 +189,7 @@ class JRPCWorkOrderReceiptImpl(WorkOrderReceipt):
         response = self.__uri_client._postmsg(json.dumps(json_rpc_request))
         return response
 
+    @error_handler
     def work_order_receipt_lookup(
             self, worker_service_id=None,
             worker_id=None, requester_id=None, receipt_status=None, id=None):
@@ -229,6 +234,7 @@ class JRPCWorkOrderReceiptImpl(WorkOrderReceipt):
         response = self.__uri_client._postmsg(json.dumps(json_rpc_request))
         return response
 
+    @error_handler
     def work_order_receipt_lookup_next(
             self, last_lookup_tag,
             worker_service_id=None, worker_id=None, requester_id=None,
