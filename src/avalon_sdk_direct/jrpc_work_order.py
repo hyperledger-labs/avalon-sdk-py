@@ -33,7 +33,7 @@ class JRPCWorkOrderImpl(WorkOrder):
     """
 
     def __init__(self, config):
-        self.__uri_client = HttpJrpcClient(config["json_rpc_uri"])
+        self.__uri_client = HttpJrpcClient(config.get("json_rpc_uri"))
         self.validation = ArgumentValidator()
 
 
