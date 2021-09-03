@@ -22,10 +22,10 @@ import re
 from setuptools import setup, find_packages
 
 setup(name='avalon_sdk_direct',
-      version='0.0.4',
+      version='0.1',
       description='Avalon SDK ',
       author='Hyperledger Avalon ',
-      author_email="karthika.murthy@intel.com",                                               
+      author_email="swati.kasera@wipro.com",                                               
       url='https://github.com/hyperledger/avalon_sdk_py',    
       package_dir = {'enums' : 'common/enums',
                      'handler' : 'internal/handler/direct',
